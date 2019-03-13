@@ -46,6 +46,8 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type :controller 
+  config.extend ControllerMacros, type: :controller
   config.before(:suite) do 
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
